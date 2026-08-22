@@ -1,6 +1,6 @@
 // List of available Pokemon to catch
 private ArrayList<String> pokemonInSafari = new ArrayList<>(
-        List.of("Pikachu", "Meowth", "Squirtle")
+        List.of("Snorlax", "Meowth", "Squirtle")
 );
 
 private final Scanner scanner = new Scanner(System.in);
@@ -87,6 +87,21 @@ private void catchPokemon() {
 
     System.out.println("You caught a " + randomlySelectedPokemon + "!");
     pokemonInInventory.add(randomlySelectedPokemon);
+    trySpecialEvent(randomlySelectedPokemon);
+}
+
+private void trySpecialEvent(String pokemon) {
+    try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("images/" + pokemon)) {
+        if (inputStream == null) {
+            return;
+        }
+
+        String result = new BufferedReader(new InputStreamReader(inputStream))
+                .lines().collect(Collectors.joining("\n"));
+        System.out.println(result);
+    } catch (IOException e) {
+        // No special event for you!
+    }
 }
 
 /**
