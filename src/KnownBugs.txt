@@ -1,0 +1,10 @@
+/*
+ * List of known bugs:
+ * 1. The Welcome message is all pushed together on one line.
+ * 2. I can't stop the program when using the "Done" option
+ * 3. I can never catch a Pikachu (no, it's not a skill issue)
+ * 4. "Release" option never gets triggered
+ * 5. "List" option doesn't work unless all caps
+ * 6. "Release" option using a large or negative number breaks the program
+ * 7. "Show" option isn't recognized, no matter the caps
+ */
