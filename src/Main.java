@@ -1,6 +1,6 @@
 // List of available Pokemon to catch
 private ArrayList<String> pokemonInSafari = new ArrayList<>(
-        List.of("Snorlax", "Meowth", "Squirtle")
+        List.of("Snorlax", "Magmar", "Squirtle")
 );
 
 private final Scanner scanner = new Scanner(System.in);
