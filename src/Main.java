@@ -131,3 +131,10 @@ private void listPokemon() {
     System.out.println("You've caught " + pokemonInInventory.size() + " Pokemon so far:");
     System.out.println(pokemonInInventory);
 }
+
+/**
+ * Feed a random Pokemon and output if it was yummy or not!
+ */
+private void feedPokemon() {
+    // TODO: Implement me
+}
