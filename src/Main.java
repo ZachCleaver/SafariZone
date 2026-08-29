@@ -35,9 +35,10 @@ void main() {
  * Shows a welcome message to the user.
  */
 private void showWelcomeMessage() {
-    System.out.print("Welcome to the Pokemon Safari! We have " + pokemonInSafari.size() + " unique type of Pokemon to catch.");
-    System.out.print("Use the following actions: " + validActions);
+    System.out.println("Welcome to the Pokemon Safari! We have " + pokemonInSafari.size() + " unique type of Pokemon to catch.");
+    System.out.println("Use the following actions: " + validActions);
     System.out.println("Gotta catch 'em all!");
+
 }
 
 /**
