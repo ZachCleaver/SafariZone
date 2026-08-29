@@ -13,7 +13,7 @@ private final String DONE_ACTION = "DONE";
 
 // Valid actions a user can enter in the console
 private ArrayList<String> validActions = new ArrayList<>(
-        List.of(CATCH_ACTION, RELEASE_ACTION, LIST_POKEMON_IN_INVENTORY, DONE_ACTION)
+        List.of(CATCH_ACTION, RELEASE_ACTION, LIST_POKEMON_IN_INVENTORY, SHOW_ACTION, DONE_ACTION)
 );
 
 // Player's inventory for each Pokemon they've caught
@@ -59,7 +59,7 @@ private void performAction(String action) {
         releasePokemon();
     } else if (DONE_ACTION.equals(actionInAllCaps)) {
         endGame();
-    } else if (LIST_POKEMON_IN_INVENTORY.equals(action)) {
+    } else if (LIST_POKEMON_IN_INVENTORY.equals(actionInAllCaps)) {
         listPokemon();
     } else if (SHOW_ACTION.equals(actionInAllCaps)) {
         showAllAvailablePokemonInSafari();
@@ -73,7 +73,7 @@ private void performAction(String action) {
  */
 private void showAllAvailablePokemonInSafari() {
     System.out.println("Here are all the Pokemon you can catch:");
-    System.out.println(pokemonInInventory);
+    System.out.println(pokemonInSafari);
 }
 
 /**
