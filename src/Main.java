@@ -7,7 +7,7 @@ private final Scanner scanner = new Scanner(System.in);
 
 private final String CATCH_ACTION = "CATCH";
 private final String LIST_POKEMON_IN_INVENTORY = "LIST";
-private final String RELEASE_ACTION = "CATCH";
+private final String RELEASE_ACTION = "RELEASE";
 private final String SHOW_ACTION = "SHOW";
 private final String DONE_ACTION = "DONE";
 
@@ -117,6 +117,7 @@ private void releasePokemon() {
     if (scanner.hasNextInt()) {
         int pokemonIndexToRemove = Integer.parseInt(scanner.nextLine());
         pokemonInInventory.remove(pokemonIndexToRemove);
+        System.out.println("Pokemon has been removed!");
     } else { // Remove a Pokemon by its name
         String pokemonNameToRemove = scanner.nextLine();
 
@@ -124,6 +125,7 @@ private void releasePokemon() {
             System.out.println("Pokemon named " + pokemonNameToRemove + " doesn't exist!");
         } else {
             pokemonInInventory.remove(pokemonNameToRemove);
+            System.out.println("Pokemon has been removed!");
         }
     }
 }
