@@ -58,7 +58,7 @@ private void performAction(String action) {
     } else if (RELEASE_ACTION.equals(actionInAllCaps)) {
         releasePokemon();
     } else if (DONE_ACTION.equals(actionInAllCaps)) {
-        return;
+        endGame();
     } else if (LIST_POKEMON_IN_INVENTORY.equals(action)) {
         listPokemon();
     } else if (SHOW_ACTION.equals(actionInAllCaps)) {
@@ -133,6 +133,12 @@ private void listPokemon() {
     System.out.println(pokemonInInventory);
 }
 
+private void endGame() {
+    System.out.println("Thanks for playing!");
+    System.out.println("You caught: " + pokemonInInventory.size() + " pokemon!");
+    System.out.println("Look at you go!");
+    System.exit(0);
+}
 /**
  * Feed a random Pokemon and output if it was yummy or not!
  */
