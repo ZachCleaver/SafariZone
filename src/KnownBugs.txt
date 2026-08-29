@@ -1,7 +1,7 @@
 /*
  * List of known bugs:
  * 1. The Welcome message is all pushed together on one line. //Done, you are trash at coding.
- * 2. I can't stop the program when using the "Done" option
+ * 2. I can't stop the program when using the "Done" option //Done did.
  * 3. I can never catch a Snorlax (no, it's not a skill issue) //Totally a skill issue. Get Gud.
  * 4. "Release" option never gets triggered
  * 5. "List" option doesn't work unless all caps

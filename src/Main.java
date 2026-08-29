@@ -82,7 +82,7 @@ private void showAllAvailablePokemonInSafari() {
 private void catchPokemon() {
     // Generates a random number between the first int and up to (but not including) the last int
     Random rand = new Random();
-    int randomNumber = rand.nextInt(1, pokemonInSafari.size());
+    int randomNumber = rand.nextInt(0, pokemonInSafari.size());
 
     String randomlySelectedPokemon = pokemonInSafari.get(randomNumber);
 
