@@ -116,14 +116,21 @@ private void releasePokemon() {
     // If user provided a number, remove a Pokemon based on the index of the List
     if (scanner.hasNextInt()) {
         int pokemonIndexToRemove = Integer.parseInt(scanner.nextLine());
+        if (pokemonIndexToRemove < 0 || pokemonIndexToRemove >= pokemonInInventory.size()) {
+            System.out.println("Do you not know basic math computations?");
+        } else {
+            String releasedPokemon = pokemonInInventory.get(pokemonIndexToRemove);
+            pokemonInInventory.remove(pokemonIndexToRemove);
+            System.out.println("Your Pokemon " + releasedPokemon + " has been removed!");
+        }
         //Compare size of pokemon caught to integar input
         // indexToRemove bigger than 0
-        if (pokemonIndexToRemove < pokemonInInventory.size() && pokemonIndexToRemove > -1) {
-            pokemonInInventory.remove(pokemonIndexToRemove);
-            System.out.println("Pokemon has been removed!");
-        } else {
-            System.out.println("Do you knot know how basic math works?");
-        }
+//        if (pokemonIndexToRemove < pokemonInInventory.size() && pokemonIndexToRemove > -1) {
+//            pokemonInInventory.remove(pokemonIndexToRemove);
+//            System.out.println("Pokemon has been removed!");
+//        } else {
+//            System.out.println("Do you knot know how basic math works?");
+//        }
     } else { // Remove a Pokemon by its name
         String pokemonNameToRemove = scanner.nextLine();
 
