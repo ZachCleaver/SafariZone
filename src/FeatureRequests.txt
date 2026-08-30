@@ -4,4 +4,5 @@
  * 2. I want to be able to Pet a Pokemon and have it say a catchphrase when I pet it.
  * 3. I want to rename Pokemon
  * 4. Small leveling system based on Petting and Naming to be implemented.
+ * 5. Add a chance for a shiny variant
  */
