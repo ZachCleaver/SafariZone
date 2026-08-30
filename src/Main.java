@@ -82,13 +82,25 @@ private void showAllAvailablePokemonInSafari() {
 private void catchPokemon() {
     // Generates a random number between the first int and up to (but not including) the last int
     Random rand = new Random();
-    int randomNumber = rand.nextInt(0, pokemonInSafari.size());
-
-    String randomlySelectedPokemon = pokemonInSafari.get(randomNumber);
-
-    System.out.println("You caught a " + randomlySelectedPokemon + "!");
-    pokemonInInventory.add(randomlySelectedPokemon);
-    trySpecialEvent(randomlySelectedPokemon);
+    String getPokemon = "";
+    int randomNumber = rand.nextInt(1, 101);
+    if (randomNumber <= 30) {
+       getPokemon = pokemonInSafari.get(1);
+        System.out.println("You caught a " + getPokemon + "!");
+    } else if (randomNumber >= 31 && randomNumber <=80) {
+        getPokemon = pokemonInSafari.get(2);
+        System.out.println("You caught a " + getPokemon + "!");
+    } else {
+       getPokemon = pokemonInSafari.get(0);
+        System.out.println("You caught a the rare " + getPokemon + "!");
+        trySpecialEvent(getPokemon);
+    }
+    pokemonInInventory.add(getPokemon);
+//    String randomlySelectedPokemon = pokemonInSafari.get(randomNumber);
+//
+//    System.out.println("You caught a " + randomlySelectedPokemon + "!");
+//    pokemonInInventory.add(randomlySelectedPokemon);
+//    trySpecialEvent(randomlySelectedPokemon);
 }
 
 private void trySpecialEvent(String pokemon) {
@@ -114,7 +126,7 @@ private void releasePokemon() {
     System.out.println(pokemonInInventory);
 
     // If user provided a number, remove a Pokemon based on the index of the List
-    if (scanner.hasNextInt()) {
+    if (scanner.hasNextInt()) { //Removes accurate index of pokemon and states if not valid input
         int pokemonIndexToRemove = Integer.parseInt(scanner.nextLine());
         if (pokemonIndexToRemove < 0 || pokemonIndexToRemove >= pokemonInInventory.size()) {
             System.out.println("Do you not know basic math computations?");
@@ -123,14 +135,6 @@ private void releasePokemon() {
             pokemonInInventory.remove(pokemonIndexToRemove);
             System.out.println("Your Pokemon " + releasedPokemon + " has been removed!");
         }
-        //Compare size of pokemon caught to integar input
-        // indexToRemove bigger than 0
-//        if (pokemonIndexToRemove < pokemonInInventory.size() && pokemonIndexToRemove > -1) {
-//            pokemonInInventory.remove(pokemonIndexToRemove);
-//            System.out.println("Pokemon has been removed!");
-//        } else {
-//            System.out.println("Do you knot know how basic math works?");
-//        }
     } else { // Remove a Pokemon by its name
         String pokemonNameToRemove = scanner.nextLine();
 
