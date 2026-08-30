@@ -3,6 +3,5 @@
  * 1. Make some Pokemon rare/harder to catch than others.
  * 2. I want to be able to Pet a Pokemon and have it say a catchphrase when I pet it.
  * 3. I want to rename Pokemon
- * 4. Make a full on battle system where I can fight with my Pokemon and train them. Also, add a leveling system, because
- *    they should get stronger as they fight. And give me items like health potions. And and and and....
+ * 4. Small leveling system based on Petting and Naming to be implemented.
  */
