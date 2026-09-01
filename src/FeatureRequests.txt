@@ -1,8 +1,11 @@
 /*
  * Feature requests:
- * 1. Make some Pokemon rare/harder to catch than others.
+ * 1. Make some Pokemon rare/harder to catch than others. //Done
  * 2. I want to be able to Pet a Pokemon and have it say a catchphrase when I pet it.
- * 3. I want to rename Pokemon
+ * 3. I want to rename Pokemon //Baby stage done, will advance in the future if time permits.
+        Future: Character Filter for Symbols
+        Future: Choose which pokemon to rename based on index (sucks to be you right now);
+        Future: If only have 1 pokemon, auto assume that pokemon.
  * 4. Small leveling system based on Petting and Naming to be implemented.
  * 5. Add a chance for a shiny variant
  */

@@ -10,10 +10,13 @@ private final String LIST_POKEMON_IN_INVENTORY = "LIST";
 private final String RELEASE_ACTION = "RELEASE";
 private final String SHOW_ACTION = "SHOW";
 private final String DONE_ACTION = "DONE";
+private final String RENAME_POKEMON = "RENAME";
+private final String PET_ACTION = "PET";
 
 // Valid actions a user can enter in the console
+
 private ArrayList<String> validActions = new ArrayList<>(
-        List.of(CATCH_ACTION, RELEASE_ACTION, LIST_POKEMON_IN_INVENTORY, SHOW_ACTION, DONE_ACTION)
+        List.of(CATCH_ACTION, RELEASE_ACTION, LIST_POKEMON_IN_INVENTORY, SHOW_ACTION, RENAME_POKEMON, PET_ACTION, DONE_ACTION)
 );
 
 // Player's inventory for each Pokemon they've caught
@@ -63,6 +66,10 @@ private void performAction(String action) {
         listPokemon();
     } else if (SHOW_ACTION.equals(actionInAllCaps)) {
         showAllAvailablePokemonInSafari();
+    } else if (PET_ACTION.equals(actionInAllCaps)) {
+        petPokemon();
+    } else if (RENAME_POKEMON.equals(actionInAllCaps)) {
+        renamePokemon();
     } else {
         System.out.println("Well that didn't work...");
     }
@@ -150,6 +157,28 @@ private void releasePokemon() {
 private void listPokemon() {
     System.out.println("You've caught " + pokemonInInventory.size() + " Pokemon so far:");
     System.out.println(pokemonInInventory);
+}
+
+private void petPokemon() {
+    System.out.println("");
+}
+
+private void renamePokemon() {
+    System.out.println("Which Pokemon would you like to rename?");
+    System.out.println(pokemonInInventory);
+    String orginalPokemon = scanner.nextLine();
+    int indexOfPokemon;
+    if (pokemonInInventory.contains(orginalPokemon)) {
+        indexOfPokemon = pokemonInInventory.indexOf(orginalPokemon);
+        System.out.println("Enter new name.");
+        String namePokemon = scanner.nextLine();
+        pokemonInInventory.set(indexOfPokemon, namePokemon);
+//        pokemonInInventory.add(namePokemon);
+        System.out.println("Your pokemon " + orginalPokemon + " is now named " + namePokemon + "!");
+//        pokemonInInventory.remove(orginalPokemon);
+    } else {
+        System.out.println("That is not a valid Pokemon you have caught, try again.");
+    }
 }
 
 private void endGame() {
