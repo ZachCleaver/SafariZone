@@ -100,14 +100,13 @@ private void catchPokemon() {
     } else {
        getPokemon = pokemonInSafari.get(0);
         System.out.println("You caught a the rare " + getPokemon + "!");
-        trySpecialEvent(getPokemon);
     }
     pokemonInInventory.add(getPokemon);
 //    String randomlySelectedPokemon = pokemonInSafari.get(randomNumber);
 //
 //    System.out.println("You caught a " + randomlySelectedPokemon + "!");
 //    pokemonInInventory.add(randomlySelectedPokemon);
-//    trySpecialEvent(randomlySelectedPokemon);
+    trySpecialEvent(getPokemon);
 }
 
 private void trySpecialEvent(String pokemon) {
