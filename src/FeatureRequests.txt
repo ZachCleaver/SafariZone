@@ -1,7 +1,8 @@
 /*
  * Feature requests:
  * 1. Make some Pokemon rare/harder to catch than others. //Done
- * 2. I want to be able to Pet a Pokemon and have it say a catchphrase when I pet it.
+ * 2. I want to be able to Pet a Pokemon and have it say a catchphrase when I pet it. //Done. Needs improvement.
+        Future: Case Sensitivity for renamed pokemon.
  * 3. I want to rename Pokemon //Baby stage done, will advance in the future if time permits.
         Future: Character Filter for Symbols
         Future: Choose which pokemon to rename based on index (sucks to be you right now);

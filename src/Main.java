@@ -159,7 +159,23 @@ private void listPokemon() {
 }
 
 private void petPokemon() {
-    System.out.println("");
+    System.out.println("Choose which Pokemon you would like to pet.");
+    System.out.println(pokemonInInventory);
+    String petPokemon = scanner.nextLine();
+    int petIndexPokemon;
+    if (!pokemonInInventory.contains(petPokemon)) {
+        System.out.println("You haven't caught that Pokemon yet!");
+        return;
+    }
+        if (petPokemon.contains("Magmar")) {
+            System.out.println("Maaaaaagggggmaaaarrrrr!");
+        } else if (petPokemon.contains("Squirtle")) {
+            System.out.println("Squirt all over my face!");
+        } else if (petPokemon.contains("Snorlax")) {
+            System.out.println("*Yawns and rolls over*");
+        } else {
+            System.out.println(petPokemon + " " + petPokemon);
+        }
 }
 
 private void renamePokemon() {
