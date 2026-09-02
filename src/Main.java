@@ -1,6 +1,6 @@
 // List of available Pokemon to catch
 private ArrayList<String> pokemonInSafari = new ArrayList<>(
-        List.of("Snorlax", "Magmar", "Squirtle")
+        List.of("Snorlax", "Mew", "Squirtle")
 );
 
 private final Scanner scanner = new Scanner(System.in);
@@ -167,8 +167,8 @@ private void petPokemon() {
         System.out.println("You haven't caught that Pokemon yet!");
         return;
     }
-        if (petPokemon.contains("Magmar")) {
-            System.out.println("Maaaaaagggggmaaaarrrrr!");
+        if (petPokemon.contains("Mew")) {
+            System.out.println("Mewww!!!");
         } else if (petPokemon.contains("Squirtle")) {
             System.out.println("Squirt all over my face!");
         } else if (petPokemon.contains("Snorlax")) {
