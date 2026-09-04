@@ -24,7 +24,10 @@ private ArrayList<String> pokemonInInventory = new ArrayList<>();
 
 void main() {
     showWelcomeMessage();
-
+    Pokemon mew = new Pokemon("Mew");
+    mew.petPokemon();
+    mew.renamePokemon("Pick-a-chew");
+    mew.petPokemon();
     String userAction = "";
 
     // Main loop to allow user to input actions in the console
