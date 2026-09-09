@@ -20,14 +20,14 @@ private ArrayList<String> validActions = new ArrayList<>(
 );
 
 // Player's inventory for each Pokemon they've caught
-private ArrayList<String> pokemonInInventory = new ArrayList<>();
+private ArrayList<Pokemon> pokemonInInventory = new ArrayList<>();
 
 void main() {
     showWelcomeMessage();
-    Pokemon mew = new Pokemon("Mew");
-    mew.petPokemon();
-    mew.renamePokemon("Pick-a-chew");
-    mew.petPokemon();
+//    Pokemon mew = new Pokemon("Mew");
+//    mew.petPokemon();
+//    mew.renamePokemon("Pick-a-chew");
+//    mew.petPokemon();
     String userAction = "";
 
     // Main loop to allow user to input actions in the console
@@ -92,24 +92,25 @@ private void showAllAvailablePokemonInSafari() {
 private void catchPokemon() {
     // Generates a random number between the first int and up to (but not including) the last int
     Random rand = new Random();
-    String getPokemon = "";
+    String pokemonName = "";
     int randomNumber = rand.nextInt(1, 101);
     if (randomNumber <= 30) {
-       getPokemon = pokemonInSafari.get(1);
-        System.out.println("You caught a " + getPokemon + "!");
-    } else if (randomNumber >= 31 && randomNumber <=80) {
-        getPokemon = pokemonInSafari.get(2);
-        System.out.println("You caught a " + getPokemon + "!");
+       pokemonName = pokemonInSafari.get(0);
+        System.out.println("You caught a " + pokemonName + "!");
+    } else if (randomNumber >= 31 && randomNumber <=90) {
+        pokemonName = pokemonInSafari.get(2);
+        System.out.println("You caught a " + pokemonName + "!");
     } else {
-       getPokemon = pokemonInSafari.get(0);
-        System.out.println("You caught a the rare " + getPokemon + "!");
+       pokemonName = pokemonInSafari.get(1);
+        System.out.println("You caught a the rare " + pokemonName + "!");
     }
-    pokemonInInventory.add(getPokemon);
+    Pokemon newPokemon = new Pokemon(pokemonName);
+    pokemonInInventory.add(newPokemon);
 //    String randomlySelectedPokemon = pokemonInSafari.get(randomNumber);
 //
 //    System.out.println("You caught a " + randomlySelectedPokemon + "!");
 //    pokemonInInventory.add(randomlySelectedPokemon);
-    trySpecialEvent(getPokemon);
+    trySpecialEvent(pokemonName);
 }
 
 private void trySpecialEvent(String pokemon) {
@@ -132,7 +133,7 @@ private void trySpecialEvent(String pokemon) {
  */
 private void releasePokemon() {
     System.out.println("You have " + pokemonInInventory.size() + " Pokemon. Which one do you want to release?");
-    System.out.println(pokemonInInventory);
+    printPokemonInInventory();
 
     // If user provided a number, remove a Pokemon based on the index of the List
     if (scanner.hasNextInt()) { //Removes accurate index of pokemon and states if not valid input
@@ -140,7 +141,7 @@ private void releasePokemon() {
         if (pokemonIndexToRemove < 0 || pokemonIndexToRemove >= pokemonInInventory.size()) {
             System.out.println("Do you not know basic math computations?");
         } else {
-            String releasedPokemon = pokemonInInventory.get(pokemonIndexToRemove);
+            Pokemon releasedPokemon = pokemonInInventory.get(pokemonIndexToRemove);
             pokemonInInventory.remove(pokemonIndexToRemove);
             System.out.println("Your Pokemon " + releasedPokemon + " has been removed!");
         }
@@ -158,12 +159,12 @@ private void releasePokemon() {
 
 private void listPokemon() {
     System.out.println("You've caught " + pokemonInInventory.size() + " Pokemon so far:");
-    System.out.println(pokemonInInventory);
+    printPokemonInInventory();
 }
 
 private void petPokemon() {
     System.out.println("Choose which Pokemon you would like to pet.");
-    System.out.println(pokemonInInventory);
+    printPokemonInInventory();
     String petPokemon = scanner.nextLine();
     int petIndexPokemon;
     if (!pokemonInInventory.contains(petPokemon)) {
@@ -183,20 +184,46 @@ private void petPokemon() {
 
 private void renamePokemon() {
     System.out.println("Which Pokemon would you like to rename?");
-    System.out.println(pokemonInInventory);
-    String orginalPokemon = scanner.nextLine();
+    printPokemonInInventory();
+    String originalPokemon = scanner.nextLine();
     int indexOfPokemon;
-    if (pokemonInInventory.contains(orginalPokemon)) {
-        indexOfPokemon = pokemonInInventory.indexOf(orginalPokemon);
-        System.out.println("Enter new name.");
-        String namePokemon = scanner.nextLine();
-        pokemonInInventory.set(indexOfPokemon, namePokemon);
-//        pokemonInInventory.add(namePokemon);
-        System.out.println("Your pokemon " + orginalPokemon + " is now named " + namePokemon + "!");
-//        pokemonInInventory.remove(orginalPokemon);
+    Pokemon comparePokemon = findPokemonWithMatch(originalPokemon);
+    if (comparePokemon == null) {
+        System.out.println("You have not caught that Pokemon!");
     } else {
-        System.out.println("That is not a valid Pokemon you have caught, try again.");
+        String newName = scanner.nextLine();
+        comparePokemon.renamePokemon(newName);
+        System.out.println("Your Pokemon " + originalPokemon + " is now " + newName + "!");
     }
+//    if (pokemonInInventory.contains(orginalPokemon)) {
+//        indexOfPokemon = pokemonInInventory.indexOf(orginalPokemon);
+//        System.out.println("Enter new name.");
+//        String namePokemon = scanner.nextLine();
+//        pokemonInInventory.set(indexOfPokemon, namePokemon);
+//        pokemonInInventory.add(namePokemon);
+//        System.out.println("Your pokemon " + orginalPokemon + " is now named " + namePokemon + "!");
+//        pokemonInInventory.remove(orginalPokemon);
+//    } else {
+//        System.out.println("That is not a valid Pokemon you have caught, try again.");
+//    }
+}
+
+private Pokemon findPokemonWithMatch(String nameToCheck) {
+    for (Pokemon pokemon : pokemonInInventory) {
+        String nameOfPokemon = pokemon.getName();
+        if (nameOfPokemon.equals(nameToCheck)) {
+            return pokemon;
+        }
+    }
+    return null;
+}
+
+private void printPokemonInInventory () {
+    for  (Pokemon pokemon : pokemonInInventory) {
+        String nameOfPokemon = pokemon.getName();
+        System.out.print(nameOfPokemon + " ");
+    }
+    System.out.println();
 }
 
 private void endGame() {

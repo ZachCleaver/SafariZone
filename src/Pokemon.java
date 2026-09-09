@@ -3,11 +3,13 @@ public class Pokemon {
     public Pokemon(String pokemonName){
         name = pokemonName;
     }
-
     public void petPokemon() {
         System.out.println(name + " " + name + "!");
     }
     public void renamePokemon(String newName) {
          name = newName;
+    }
+    public String getName() {
+        return name;
     }
 }
