@@ -147,11 +147,11 @@ private void releasePokemon() {
         }
     } else { // Remove a Pokemon by its name
         String pokemonNameToRemove = scanner.nextLine();
-
-        if (!pokemonInInventory.contains(pokemonNameToRemove)) {
+        Pokemon comparePokemonRelease = findPokemonWithMatch(pokemonNameToRemove);
+        if (comparePokemonRelease == null) {
             System.out.println("Pokemon named " + pokemonNameToRemove + " doesn't exist!");
         } else {
-            pokemonInInventory.remove(pokemonNameToRemove);
+            pokemonInInventory.remove(comparePokemonRelease);
             System.out.println("Pokemon has been removed!");
         }
     }
@@ -166,33 +166,32 @@ private void petPokemon() {
     System.out.println("Choose which Pokemon you would like to pet.");
     printPokemonInInventory();
     String petPokemon = scanner.nextLine();
-    int petIndexPokemon;
-    if (!pokemonInInventory.contains(petPokemon)) {
+    Pokemon comparePokemonPet = findPokemonWithMatch(petPokemon);
+    if (comparePokemonPet == null) {
         System.out.println("You haven't caught that Pokemon yet!");
         return;
     }
-        if (petPokemon.contains("Mew")) {
-            System.out.println("Mewww!!!");
-        } else if (petPokemon.contains("Squirtle")) {
-            System.out.println("Squirt all over my face!");
-        } else if (petPokemon.contains("Snorlax")) {
-            System.out.println("*Yawns and rolls over*");
-        } else {
-            System.out.println(petPokemon + " " + petPokemon);
-        }
+    if (petPokemon.contains("Mew")) {
+        System.out.println("Mewww!!!");
+    } else if (petPokemon.contains("Squirtle")) {
+        System.out.println("Squirt all over my face!");
+    } else if (petPokemon.contains("Snorlax")) {
+        System.out.println("*Yawns and rolls over*");
+    } else {
+        System.out.println(petPokemon + " " + petPokemon);
+    }
 }
 
 private void renamePokemon() {
     System.out.println("Which Pokemon would you like to rename?");
     printPokemonInInventory();
     String originalPokemon = scanner.nextLine();
-    int indexOfPokemon;
-    Pokemon comparePokemon = findPokemonWithMatch(originalPokemon);
-    if (comparePokemon == null) {
+    Pokemon comparePokemonRename = findPokemonWithMatch(originalPokemon);
+    if (comparePokemonRename == null) {
         System.out.println("You have not caught that Pokemon!");
     } else {
         String newName = scanner.nextLine();
-        comparePokemon.renamePokemon(newName);
+        comparePokemonRename.renamePokemon(newName);
         System.out.println("Your Pokemon " + originalPokemon + " is now " + newName + "!");
     }
 //    if (pokemonInInventory.contains(orginalPokemon)) {
