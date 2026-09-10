@@ -169,16 +169,8 @@ private void petPokemon() {
     Pokemon comparePokemonPet = findPokemonWithMatch(petPokemon);
     if (comparePokemonPet == null) {
         System.out.println("You haven't caught that Pokemon yet!");
-        return;
-    }
-    if (petPokemon.contains("Mew")) {
-        System.out.println("Mewww!!!");
-    } else if (petPokemon.contains("Squirtle")) {
-        System.out.println("Squirt all over my face!");
-    } else if (petPokemon.contains("Snorlax")) {
-        System.out.println("*Yawns and rolls over*");
     } else {
-        System.out.println(petPokemon + " " + petPokemon);
+        comparePokemonPet.petPokemon();
     }
 }
 

@@ -9,4 +9,5 @@
         Future: If only have 1 pokemon, auto assume that pokemon.
  * 4. Small leveling system based on Petting and Naming to be implemented.
  * 5. Add a chance for a shiny variant
+ * 6. Adding statistics when you catch Pokemon.
  */
