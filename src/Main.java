@@ -132,28 +132,32 @@ private void trySpecialEvent(String pokemon) {
  * or by providing a number equaling the index of the Pokemon to remove from the user's list.
  */
 private void releasePokemon() {
-    System.out.println("You have " + pokemonInInventory.size() + " Pokemon. Which one do you want to release?");
-    printPokemonInInventory();
-
-    // If user provided a number, remove a Pokemon based on the index of the List
-    if (scanner.hasNextInt()) { //Removes accurate index of pokemon and states if not valid input
-        int pokemonIndexToRemove = Integer.parseInt(scanner.nextLine());
-        if (pokemonIndexToRemove < 0 || pokemonIndexToRemove >= pokemonInInventory.size()) {
-            System.out.println("Do you not know basic math computations?");
-        } else {
-            Pokemon releasedPokemon = pokemonInInventory.get(pokemonIndexToRemove);
-            pokemonInInventory.remove(pokemonIndexToRemove);
-            System.out.println("Your Pokemon " + releasedPokemon + " has been removed!");
+    if (pokemonInInventory.size() > 1) {
+        System.out.println("You have " + pokemonInInventory.size() + " Pokemon. Which one do you want to release?");
+        printPokemonInInventory();
+        if (scanner.hasNextInt()) { //Removes accurate index of pokemon and states if not valid input
+            int pokemonIndexToRemove = Integer.parseInt(scanner.nextLine());
+            if (pokemonIndexToRemove < 0 || pokemonIndexToRemove >= pokemonInInventory.size()) {
+                System.out.println("Do you not know basic math computations?");
+            } else {
+                Pokemon releasedPokemon = pokemonInInventory.get(pokemonIndexToRemove);
+                pokemonInInventory.remove(pokemonIndexToRemove);
+                System.out.println("Your Pokemon " + releasedPokemon + " has been removed!");
+            }
+        } else { // Remove a Pokemon by its name
+            String pokemonNameToRemove = scanner.nextLine();
+            Pokemon comparePokemonRelease = findPokemonWithMatch(pokemonNameToRemove);
+            if (comparePokemonRelease == null) {
+                System.out.println("Pokemon named " + pokemonNameToRemove + " doesn't exist!");
+            } else {
+                pokemonInInventory.remove(comparePokemonRelease);
+                System.out.println("Pokemon has been removed!");
+            }
         }
-    } else { // Remove a Pokemon by its name
-        String pokemonNameToRemove = scanner.nextLine();
-        Pokemon comparePokemonRelease = findPokemonWithMatch(pokemonNameToRemove);
-        if (comparePokemonRelease == null) {
-            System.out.println("Pokemon named " + pokemonNameToRemove + " doesn't exist!");
-        } else {
-            pokemonInInventory.remove(comparePokemonRelease);
-            System.out.println("Pokemon has been removed!");
-        }
+    } else {
+        Pokemon autoPokemonToRelease = pokemonInInventory.getFirst();
+        pokemonInInventory.remove(autoPokemonToRelease);
+        System.out.println("You have no pokemon now!");
     }
 }
 
@@ -175,16 +179,25 @@ private void petPokemon() {
 }
 
 private void renamePokemon() {
-    System.out.println("Which Pokemon would you like to rename?");
-    printPokemonInInventory();
-    String originalPokemon = scanner.nextLine();
-    Pokemon comparePokemonRename = findPokemonWithMatch(originalPokemon);
-    if (comparePokemonRename == null) {
-        System.out.println("You have not caught that Pokemon!");
+    if (pokemonInInventory.size() > 1) {
+        System.out.println("Which Pokemon would you like to rename?");
+        printPokemonInInventory();
+        String originalPokemon = scanner.nextLine();
+        Pokemon comparePokemonRename = findPokemonWithMatch(originalPokemon);
+        if (comparePokemonRename == null) {
+            System.out.println("You have not caught that Pokemon!");
+        } else {
+            String newName = scanner.nextLine();
+            comparePokemonRename.renamePokemon(newName);
+            System.out.println("Your Pokemon " + originalPokemon + " is now " + newName + "!");
+        }
     } else {
-        String newName = scanner.nextLine();
-        comparePokemonRename.renamePokemon(newName);
-        System.out.println("Your Pokemon " + originalPokemon + " is now " + newName + "!");
+        System.out.println("What would you like to name your pokemon?");
+        Pokemon autoPokemonToName = pokemonInInventory.getFirst();
+        String getNameOfPokemonAuto = autoPokemonToName.getName();
+        String autoNamePokemon = scanner.nextLine();
+        autoPokemonToName.renamePokemon(autoNamePokemon);
+        System.out.println(getNameOfPokemonAuto + " is now " + autoNamePokemon + "!");
     }
 //    if (pokemonInInventory.contains(orginalPokemon)) {
 //        indexOfPokemon = pokemonInInventory.indexOf(orginalPokemon);
@@ -202,7 +215,7 @@ private void renamePokemon() {
 private Pokemon findPokemonWithMatch(String nameToCheck) {
     for (Pokemon pokemon : pokemonInInventory) {
         String nameOfPokemon = pokemon.getName();
-        if (nameOfPokemon.equals(nameToCheck)) {
+        if (nameOfPokemon.equalsIgnoreCase(nameToCheck)) {
             return pokemon;
         }
     }
