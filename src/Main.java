@@ -104,7 +104,7 @@ private void catchPokemon() {
     Random shinyVariant = new Random();
     boolean shinyVerify = false;
     int randomShinyVariant = shinyVariant.nextInt(1, 101);
-    if (randomShinyVariant > 5) {
+    if (randomShinyVariant > 75) {
         shinyVerify = true;
     }
     Pokemon newPokemon = new Pokemon(pokemonName, shinyVerify);
