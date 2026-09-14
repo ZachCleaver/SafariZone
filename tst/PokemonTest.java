@@ -6,7 +6,7 @@ public class PokemonTest {
 
     @Test
     public void test_renamePokemon() {
-        Pokemon pokemon = new Pokemon("Pikachu");
+        Pokemon pokemon = new Pokemon("Pikachu", true);
         pokemon.renamePokemon("Garble");
         assertEquals("Garble", pokemon.getName());
     }

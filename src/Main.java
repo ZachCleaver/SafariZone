@@ -96,32 +96,47 @@ private void catchPokemon() {
     int randomNumber = rand.nextInt(1, 101);
     if (randomNumber <= 30) {
        pokemonName = pokemonInSafari.get(0);
-        System.out.println("You caught a " + pokemonName + "!");
     } else if (randomNumber >= 31 && randomNumber <=90) {
         pokemonName = pokemonInSafari.get(2);
-        System.out.println("You caught a " + pokemonName + "!");
     } else {
        pokemonName = pokemonInSafari.get(1);
-        System.out.println("You caught a the rare " + pokemonName + "!");
     }
-    Pokemon newPokemon = new Pokemon(pokemonName);
+    Random shinyVariant = new Random();
+    boolean shinyVerify = false;
+    int randomShinyVariant = shinyVariant.nextInt(1, 101);
+    if (randomShinyVariant > 5) {
+        shinyVerify = true;
+    }
+    Pokemon newPokemon = new Pokemon(pokemonName, shinyVerify);
     pokemonInInventory.add(newPokemon);
-//    String randomlySelectedPokemon = pokemonInSafari.get(randomNumber);
-//
-//    System.out.println("You caught a " + randomlySelectedPokemon + "!");
-//    pokemonInInventory.add(randomlySelectedPokemon);
-    trySpecialEvent(pokemonName);
+    if (newPokemon.getShiny()) {
+        trySpecialEvent(pokemonName);
+    } else {
+        System.out.println("You caught " + pokemonName + "!");
+    }
 }
 
-private void trySpecialEvent(String pokemon) {
-    try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("images/" + pokemon)) {
+private void trySpecialEvent(String pokemonName) {
+    try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("images/" + pokemonName)) {
         if (inputStream == null) {
             return;
         }
-
         String result = new BufferedReader(new InputStreamReader(inputStream))
                 .lines().collect(Collectors.joining("\n"));
-        System.out.println(result);
+
+        if (pokemonName.equalsIgnoreCase("Mew")) {
+            System.out.println("\033[35m" + result + "\033[0m");
+            System.out.println("You caught the Mythical");
+            System.out.println("\033[35m" + pokemonName + "\033[0m!");
+        } else if (pokemonName.equalsIgnoreCase("Snorlax")) {
+            System.out.println("\033[32m" + result + "\033[0m");
+            System.out.println("You caught the Fatty");
+            System.out.println("\033[32m" + pokemonName + "\033[0m!");
+        }  if (pokemonName.equalsIgnoreCase("Squirtle")) {
+            System.out.println("\033[96m" + result + "\033[0m");
+            System.out.println("You caught the Moist");
+            System.out.println("\033[96m" + pokemonName + "\033[0m!");
+        }
     } catch (IOException e) {
         // No special event for you!
     }

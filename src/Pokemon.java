@@ -1,7 +1,9 @@
 public class Pokemon {
     private String name;
-    public Pokemon(String pokemonName){
+    private boolean isShiny;
+    public Pokemon(String pokemonName, boolean isItShiny){
         name = pokemonName;
+        isShiny = isItShiny;
     }
     public void petPokemon() {
 //        System.out.println(name + " " + name + "!");
@@ -14,11 +16,17 @@ public class Pokemon {
         } else {
             System.out.println(name + " " + name + "!");
         }
+        if (isShiny) {
+            System.out.println("I am shiny, bitch!");
+        }
     }
     public void renamePokemon(String newName) {
          name = newName;
     }
     public String getName() {
         return name;
+    }
+    public boolean getShiny() {
+        return isShiny;
     }
 }
