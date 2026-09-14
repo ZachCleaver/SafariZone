@@ -154,6 +154,8 @@ private void releasePokemon() {
                 System.out.println("Pokemon has been removed!");
             }
         }
+    } else if (pokemonInInventory.isEmpty()) {
+        System.out.println("You haven't caught anything yet!");
     } else {
         Pokemon autoPokemonToRelease = pokemonInInventory.getFirst();
         pokemonInInventory.remove(autoPokemonToRelease);
@@ -167,14 +169,21 @@ private void listPokemon() {
 }
 
 private void petPokemon() {
-    System.out.println("Choose which Pokemon you would like to pet.");
-    printPokemonInInventory();
-    String petPokemon = scanner.nextLine();
-    Pokemon comparePokemonPet = findPokemonWithMatch(petPokemon);
-    if (comparePokemonPet == null) {
-        System.out.println("You haven't caught that Pokemon yet!");
+    if (pokemonInInventory.size() > 1) {
+        System.out.println("Choose which Pokemon you would like to pet.");
+        printPokemonInInventory();
+        String petPokemon = scanner.nextLine();
+        Pokemon comparePokemonPet = findPokemonWithMatch(petPokemon);
+        if (comparePokemonPet == null) {
+            System.out.println("You haven't caught that Pokemon yet!");
+        } else {
+            comparePokemonPet.petPokemon();
+        }
+    } else if (pokemonInInventory.isEmpty()) {
+        System.out.println("You haven't caught anything yet!");
     } else {
-        comparePokemonPet.petPokemon();
+        Pokemon autoPokemonToPet = pokemonInInventory.getFirst();
+        autoPokemonToPet.petPokemon();
     }
 }
 
@@ -191,6 +200,8 @@ private void renamePokemon() {
             comparePokemonRename.renamePokemon(newName);
             System.out.println("Your Pokemon " + originalPokemon + " is now " + newName + "!");
         }
+    } else if (pokemonInInventory.isEmpty()) {
+        System.out.println("You haven't caught anything yet!");
     } else {
         System.out.println("What would you like to name your pokemon?");
         Pokemon autoPokemonToName = pokemonInInventory.getFirst();
