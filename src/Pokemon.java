@@ -1,6 +1,8 @@
 public class Pokemon {
     private String name;
     private boolean isShiny;
+    private String shinyColoring;
+
     public Pokemon(String pokemonName, boolean isItShiny){
         name = pokemonName;
         isShiny = isItShiny;
@@ -29,4 +31,13 @@ public class Pokemon {
     public boolean getShiny() {
         return isShiny;
     }
+    public void setShinyColor(String getShinyColor) {
+        if (isShiny) {
+            shinyColoring = getShinyColor;
+        }
+    }
+    public String getShinyColoring() {
+        return shinyColoring;
+    }
+
 }

@@ -1,3 +1,5 @@
+import util.Colors;
+
 // List of available Pokemon to catch
 private ArrayList<String> pokemonInSafari = new ArrayList<>(
         List.of("Snorlax", "Mew", "Squirtle")
@@ -104,19 +106,19 @@ private void catchPokemon() {
     Random shinyVariant = new Random();
     boolean shinyVerify = false;
     int randomShinyVariant = shinyVariant.nextInt(1, 101);
-    if (randomShinyVariant > 75) {
+    if (randomShinyVariant > 5) {
         shinyVerify = true;
     }
     Pokemon newPokemon = new Pokemon(pokemonName, shinyVerify);
     pokemonInInventory.add(newPokemon);
     if (newPokemon.getShiny()) {
-        trySpecialEvent(pokemonName);
+        trySpecialEvent(pokemonName, newPokemon);
     } else {
         System.out.println("You caught " + pokemonName + "!");
     }
 }
 
-private void trySpecialEvent(String pokemonName) {
+private void trySpecialEvent(String pokemonName, Pokemon newPokemon) {
     try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("images/" + pokemonName)) {
         if (inputStream == null) {
             return;
@@ -125,15 +127,18 @@ private void trySpecialEvent(String pokemonName) {
                 .lines().collect(Collectors.joining("\n"));
 
         if (pokemonName.equalsIgnoreCase("Mew")) {
-            System.out.println("\033[35m" + result + "\033[0m");
+            newPokemon.setShinyColor(Colors.PURPLE_BOLD);
+            System.out.println(Colors.PURPLE_BOLD + result + Colors.RESET);
             System.out.println("You caught the Mythical");
             System.out.println("\033[35m" + pokemonName + "\033[0m!");
         } else if (pokemonName.equalsIgnoreCase("Snorlax")) {
-            System.out.println("\033[32m" + result + "\033[0m");
+            newPokemon.setShinyColor(Colors.GREEN_BOLD);
+            System.out.println(Colors.GREEN_BOLD + result + Colors.RESET);
             System.out.println("You caught the Fatty");
             System.out.println("\033[32m" + pokemonName + "\033[0m!");
         }  if (pokemonName.equalsIgnoreCase("Squirtle")) {
-            System.out.println("\033[96m" + result + "\033[0m");
+            newPokemon.setShinyColor(Colors.CYAN_BOLD);
+            System.out.println(Colors.CYAN_BOLD + result + Colors.RESET);
             System.out.println("You caught the Moist");
             System.out.println("\033[96m" + pokemonName + "\033[0m!");
         }
@@ -251,7 +256,7 @@ private Pokemon findPokemonWithMatch(String nameToCheck) {
 private void printPokemonInInventory () {
     for  (Pokemon pokemon : pokemonInInventory) {
         String nameOfPokemon = pokemon.getName();
-        System.out.print(nameOfPokemon + " ");
+        System.out.print(pokemon.getShinyColoring() + nameOfPokemon + Colors.RESET + " ");
     }
     System.out.println();
 }
