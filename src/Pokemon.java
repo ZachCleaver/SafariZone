@@ -1,3 +1,5 @@
+import util.Colors;
+
 public class Pokemon {
     private String name;
     private boolean isShiny;
@@ -6,6 +8,7 @@ public class Pokemon {
     public Pokemon(String pokemonName, boolean isItShiny){
         name = pokemonName;
         isShiny = isItShiny;
+        shinyColoring = "";
     }
     public void petPokemon() {
 //        System.out.println(name + " " + name + "!");

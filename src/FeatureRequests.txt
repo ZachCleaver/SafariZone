@@ -8,6 +8,6 @@
         Future: If only have 1 pokemon, auto assume that pokemon. //Done
  * 4. Small leveling system based on Petting and Naming to be implemented.
  * 5. Add a chance for a shiny variant. //Done
-        -Add feature to list colored name for shiny in list.
+        -Add feature to list colored name for shiny in list. //Done
  * 6. Adding statistics when you catch Pokemon.
  */

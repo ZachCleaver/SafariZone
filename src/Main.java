@@ -106,7 +106,7 @@ private void catchPokemon() {
     Random shinyVariant = new Random();
     boolean shinyVerify = false;
     int randomShinyVariant = shinyVariant.nextInt(1, 101);
-    if (randomShinyVariant > 5) {
+    if (randomShinyVariant > 75) {
         shinyVerify = true;
     }
     Pokemon newPokemon = new Pokemon(pokemonName, shinyVerify);
@@ -125,7 +125,6 @@ private void trySpecialEvent(String pokemonName, Pokemon newPokemon) {
         }
         String result = new BufferedReader(new InputStreamReader(inputStream))
                 .lines().collect(Collectors.joining("\n"));
-
         if (pokemonName.equalsIgnoreCase("Mew")) {
             newPokemon.setShinyColor(Colors.PURPLE_BOLD);
             System.out.println(Colors.PURPLE_BOLD + result + Colors.RESET);
