@@ -1,14 +1,23 @@
-import util.Colors;
+import java.util.Random;
 
 public class Pokemon {
     private String name;
     private boolean isShiny;
     private String shinyColoring;
+    private int healthPoints;
+    private boolean poopFactor;
+    private int movesKnown;
+    private int initialLevel;
+    private Random randomGen = new Random();
 
     public Pokemon(String pokemonName, boolean isItShiny){
         name = pokemonName;
         isShiny = isItShiny;
         shinyColoring = "";
+        setStartingHealth();
+        setDoesItPoop();
+//        movesKnown = startingMovesKnown;
+//        initialLevel = startingLevel;
     }
     public void petPokemon() {
 //        System.out.println(name + " " + name + "!");
@@ -41,6 +50,30 @@ public class Pokemon {
     }
     public String getShinyColoring() {
         return shinyColoring;
+    }
+
+    public void printStartingStats() {
+        System.out.println("Your " + name + " has the starting health points of: " + healthPoints);
+        if (poopFactor) {
+            System.out.println("Your " + name + " needs to poop!");
+        }
+    }
+
+    private void setStartingHealth() {
+        if (name.contains("Mew")) {
+            healthPoints = randomGen.nextInt(30, 49);
+        } else if (name.contains("Snorlax")) {
+            healthPoints = randomGen.nextInt(42, 75);
+        } else {
+            healthPoints = randomGen.nextInt(20, 42);
+        }
+    }
+
+    private void setDoesItPoop() {
+        int doesItPoop = randomGen.nextInt(1, 101);
+        if (doesItPoop >= 45) {
+            poopFactor = true;
+        }
     }
 
 }

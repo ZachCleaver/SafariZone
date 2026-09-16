@@ -116,6 +116,7 @@ private void catchPokemon() {
     } else {
         System.out.println("You caught " + pokemonName + "!");
     }
+    newPokemon.printStartingStats();
 }
 
 private void trySpecialEvent(String pokemonName, Pokemon newPokemon) {
