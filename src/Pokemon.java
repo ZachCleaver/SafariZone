@@ -16,8 +16,8 @@ public class Pokemon {
         shinyColoring = "";
         setStartingHealth();
         setDoesItPoop();
-//        movesKnown = startingMovesKnown;
-//        initialLevel = startingLevel;
+        setStartingLevel();
+        setNumberOfStartingMoves();
     }
     public void petPokemon() {
 //        System.out.println(name + " " + name + "!");
@@ -53,7 +53,8 @@ public class Pokemon {
     }
 
     public void printStartingStats() {
-        System.out.println("Your " + name + " has the starting health points of: " + healthPoints);
+        System.out.println("Your " + name + " has the starting level of " + initialLevel + " and has the starting health points of: " + healthPoints);
+        System.out.println("Your " + name + " has " + movesKnown + " moves!");
         if (poopFactor) {
             System.out.println("Your " + name + " needs to poop!");
         }
@@ -71,9 +72,17 @@ public class Pokemon {
 
     private void setDoesItPoop() {
         int doesItPoop = randomGen.nextInt(1, 101);
-        if (doesItPoop >= 45) {
+        if (doesItPoop >= 95) {
             poopFactor = true;
         }
+    }
+
+    private void setStartingLevel() {
+        initialLevel = randomGen.nextInt(1, 3);
+    }
+
+    private void setNumberOfStartingMoves() {
+        movesKnown = randomGen.nextInt(1, 3);
     }
 
 }
