@@ -10,7 +10,6 @@ public class Pokemon {
     private boolean poopFactor;
     private int movesKnown;
     private int initialLevel;
-    private Random randomGen = new Random();
 
     public Pokemon(String pokemonName, boolean isItShiny){
         name = pokemonName;
@@ -61,5 +60,5 @@ public class Pokemon {
             System.out.println("Your " + name + " needs to poop!");
         }
     }
-    
+
 }
