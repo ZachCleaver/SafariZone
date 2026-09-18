@@ -1,5 +1,6 @@
 import util.StatCreators;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Pokemon {
@@ -10,6 +11,7 @@ public class Pokemon {
     private boolean poopFactor;
     private int movesKnown;
     private int initialLevel;
+    private ArrayList<String> startingMoves = new ArrayList<>();
 
     public Pokemon(String pokemonName, boolean isItShiny){
         name = pokemonName;
@@ -19,6 +21,7 @@ public class Pokemon {
         poopFactor = StatCreators.setDoesItPoop();
         initialLevel = StatCreators.setStartingLevel();
         movesKnown = StatCreators.setNumberOfStartingMoves();
+        startingMoves = StatCreators.setTheStaringMoves();
     }
     public void petPokemon() {
 //        System.out.println(name + " " + name + "!");

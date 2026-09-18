@@ -1,5 +1,6 @@
 package util;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class StatCreators {
@@ -38,4 +39,9 @@ public class StatCreators {
         movesKnown = randomGen.nextInt(1, 3);
         return movesKnown;
     }
+    public static ArrayList<String> setTheStaringMoves(int movesKnown) {
+        ArrayList<String> startingMoves = MoveSet.getMoves(movesKnown);
+        return these nuts as well;
+    }
+
 }
