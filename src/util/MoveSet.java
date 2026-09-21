@@ -10,6 +10,9 @@ public class MoveSet {
     );
 
     public static ArrayList<String> getMoves(int movesKnown) {
+        if (movesKnown >= normalTypeMoves.size()) {
+            return normalTypeMoves;
+        }
         ArrayList<String> listOfMoves = new ArrayList<>(movesKnown);
         while (listOfMoves.size() < movesKnown) {
             Random getRandomMove = new Random();
@@ -21,9 +24,4 @@ public class MoveSet {
         }
         return listOfMoves;
     }
-
-
 }
-
-//Loop: Check if name to add to getMoves is already in list of normalTypeMoves.
-//
