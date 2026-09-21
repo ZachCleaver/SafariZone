@@ -1,7 +1,7 @@
+import model.PokemonType;
 import util.StatCreators;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Pokemon {
     private String name;
@@ -11,6 +11,7 @@ public class Pokemon {
     private boolean poopFactor;
     private int movesKnown;
     private int initialLevel;
+    private PokemonType pokemonType;
     private ArrayList<String> startingMoves = new ArrayList<>();
 
     public Pokemon(String pokemonName, boolean isItShiny){
@@ -21,7 +22,8 @@ public class Pokemon {
         poopFactor = StatCreators.setDoesItPoop();
         initialLevel = StatCreators.setStartingLevel();
         movesKnown = StatCreators.setNumberOfStartingMoves();
-        startingMoves = StatCreators.setTheStaringMoves(movesKnown);
+        pokemonType = StatCreators.declareType(name);
+        startingMoves = StatCreators.setTheStartingMoves(movesKnown, pokemonType);
     }
     public void petPokemon() {
 //        System.out.println(name + " " + name + "!");
@@ -57,6 +59,7 @@ public class Pokemon {
     }
 
     public void printStartingStats() {
+        System.out.println("You caught a " + pokemonType + " Pokemon!");
         System.out.println("Your " + name + " has the starting level of " + initialLevel + " and has the starting health points of: " + healthPoints);
         System.out.println("Your " + name + " has " + movesKnown + " moves!");
         System.out.println("Your pokemon knows: " + startingMoves + "!");

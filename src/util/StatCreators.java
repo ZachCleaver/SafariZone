@@ -1,7 +1,9 @@
 package util;
 
+import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.ArrayList;
 import java.util.Random;
+import model.PokemonType;
 
 public class StatCreators {
     private static Random randomGen = new Random();
@@ -39,9 +41,20 @@ public class StatCreators {
         movesKnown = randomGen.nextInt(1, 4);
         return movesKnown;
     }
-    public static ArrayList<String> setTheStaringMoves(int movesKnown) {
-        ArrayList<String> startingMoves = MoveSet.getMoves(movesKnown);
+    public static ArrayList<String> setTheStartingMoves(int movesKnown, PokemonType pokemonType) {
+        ArrayList<String> startingMoves = MoveSet.getMoves(movesKnown, pokemonType);
         return startingMoves;
     }
 
+    public static PokemonType declareType(String name) {
+        PokemonType typeOfPokemon;
+        if (name.contains("Mew")) {
+            typeOfPokemon = PokemonType.PSYCHIC;
+        } else if (name.contains("Snorlax")) {
+            typeOfPokemon = PokemonType.NORMAL;
+        } else {
+            typeOfPokemon = PokemonType.WATER;
+        }
+        return typeOfPokemon;
+    }
 }
