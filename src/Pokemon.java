@@ -21,7 +21,7 @@ public class Pokemon {
         poopFactor = StatCreators.setDoesItPoop();
         initialLevel = StatCreators.setStartingLevel();
         movesKnown = StatCreators.setNumberOfStartingMoves();
-        startingMoves = StatCreators.setTheStaringMoves();
+        startingMoves = StatCreators.setTheStaringMoves(movesKnown);
     }
     public void petPokemon() {
 //        System.out.println(name + " " + name + "!");
@@ -59,6 +59,7 @@ public class Pokemon {
     public void printStartingStats() {
         System.out.println("Your " + name + " has the starting level of " + initialLevel + " and has the starting health points of: " + healthPoints);
         System.out.println("Your " + name + " has " + movesKnown + " moves!");
+        System.out.println("Your pokemon knows: " + startingMoves + "!");
         if (poopFactor) {
             System.out.println("Your " + name + " needs to poop!");
         }

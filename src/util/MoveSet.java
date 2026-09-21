@@ -5,14 +5,25 @@ import java.util.List;
 import java.util.Random;
 
 public class MoveSet {
-    public ArrayList<String> normalTypeMoves = new ArrayList<>(
+    public static ArrayList<String> normalTypeMoves = new ArrayList<>(
             List.of("Bite", "Tailwhip", "Flash", "Roar", "Karate Chop")
     );
 
     public static ArrayList<String> getMoves(int movesKnown) {
-        return;
+        ArrayList<String> listOfMoves = new ArrayList<>(movesKnown);
+        while (listOfMoves.size() < movesKnown) {
+            Random getRandomMove = new Random();
+            int getMove = getRandomMove.nextInt(normalTypeMoves.size());
+            String randomMove = normalTypeMoves.get(getMove);
+            if (!listOfMoves.contains(randomMove)) {
+                listOfMoves.add(randomMove);
+            }
+        }
+        return listOfMoves;
     }
 
 
 }
 
+//Loop: Check if name to add to getMoves is already in list of normalTypeMoves.
+//

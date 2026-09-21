@@ -30,18 +30,18 @@ public class StatCreators {
 
     public static int setStartingLevel() {
         int initialLevel;
-        initialLevel = randomGen.nextInt(1, 3);
+        initialLevel = randomGen.nextInt(1, 4);
         return initialLevel;
     }
 
     public static int setNumberOfStartingMoves() {
         int movesKnown;
-        movesKnown = randomGen.nextInt(1, 3);
+        movesKnown = randomGen.nextInt(1, 4);
         return movesKnown;
     }
     public static ArrayList<String> setTheStaringMoves(int movesKnown) {
         ArrayList<String> startingMoves = MoveSet.getMoves(movesKnown);
-        return these nuts as well;
+        return startingMoves;
     }
 
 }
