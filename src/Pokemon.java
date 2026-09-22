@@ -14,7 +14,9 @@ public class Pokemon {
     private int startingExperiencePoints;
     private int addExperienceByPetting = 50;
     private int currentExperience;
-    private int getExpLevel;
+    private double levelIncreaseModifier;
+    private double expNeededToLevel;
+    private int pokeLevel;
     private PokemonType pokemonType;
     private ArrayList<String> startingMoves = new ArrayList<>();
 
@@ -76,17 +78,30 @@ public class Pokemon {
         }
     }
 
-    public void displayLevel() {
-        String convertExp = "";
-        if (currentExperience > 999) {
-            convertExp = Integer.toString(Math.abs(currentExperience));
-            getExpLevel = Integer.parseInt(convertExp.substring(0, 2));
-            System.out.println("Your " + name + " is at level " + getExpLevel);
-        } else {
-            convertExp = Integer.toString(Math.abs(currentExperience));
-            getExpLevel = Character.getNumericValue(convertExp.charAt(0));
-            System.out.println("Your " + name + " is at level " + getExpLevel);
-        }
-    }
+    /**Attempted to create compounding experience needed to level.
+     * Supposed to take the starting experiences points and times it by 1.25 to create experience needed for next level
+     * Is supposed to continously evolve the experienced needed for each level by the same recipe.
+     * Does not fully work
+     */
+//    public void calculateExperienceLevel() {
+//        levelIncreaseModifier = (startingExperiencePoints * 1.25);
+//        System.out.println(levelIncreaseModifier);
+//        expNeededToLevel = (int)levelIncreaseModifier - currentExperience;
+//        System.out.println(expNeededToLevel);
+//        if (expNeededToLevel > 0) {
+//            System.out.println("You need " + expNeededToLevel + " more experience to level!");
+//        } else {
+//            pokeLevel = initialLevel++;
+//            int leftOverExp = currentExperience - (int)levelIncreaseModifier;
+//            expNeededToLevel = (currentExperience - leftOverExp) *1.25;
+//            levelIncreaseModifier = expNeededToLevel;
+//            System.out.println("Your " + name + " is now level " + pokeLevel + "!");
+//            System.out.println("Your " + name + " now needs " + expNeededToLevel + "!");
+//        }
+//        }
 
+    public void displayLevel() {
+        currentExperience /= 100;
+        System.out.println("Your " + " is at level " + currentExperience);
+    }
 }
