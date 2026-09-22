@@ -9,7 +9,7 @@
  * 4. Small leveling system based on Petting and Naming to be implemented.
  * 5. Add a chance for a shiny variant. //Done
         -Add feature to list colored name for shiny in list. //Done
- * 6. Adding statistics when you catch Pokemon.
+ * 6. Adding statistics when you catch Pokemon. //Done
     - HP
     - Level 1-3
     - # of moves known (1/2)

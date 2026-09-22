@@ -14,11 +14,12 @@ private final String SHOW_ACTION = "SHOW";
 private final String DONE_ACTION = "DONE";
 private final String RENAME_POKEMON = "RENAME";
 private final String PET_ACTION = "PET";
+private final String CALL_LEVEL = "LEVEL";
 
 // Valid actions a user can enter in the console
 
 private ArrayList<String> validActions = new ArrayList<>(
-        List.of(CATCH_ACTION, RELEASE_ACTION, LIST_POKEMON_IN_INVENTORY, SHOW_ACTION, RENAME_POKEMON, PET_ACTION, DONE_ACTION)
+        List.of(CATCH_ACTION, RELEASE_ACTION, LIST_POKEMON_IN_INVENTORY, SHOW_ACTION, RENAME_POKEMON, PET_ACTION, CALL_LEVEL, DONE_ACTION)
 );
 
 // Player's inventory for each Pokemon they've caught
@@ -75,6 +76,8 @@ private void performAction(String action) {
         petPokemon();
     } else if (RENAME_POKEMON.equals(actionInAllCaps)) {
         renamePokemon();
+    } else if (CALL_LEVEL.equals(actionInAllCaps)) {
+        showLevel();
     } else {
         System.out.println("Well that didn't work...");
     }
@@ -86,6 +89,25 @@ private void performAction(String action) {
 private void showAllAvailablePokemonInSafari() {
     System.out.println("Here are all the Pokemon you can catch:");
     System.out.println(pokemonInSafari);
+}
+
+private void showLevel() {
+    if (pokemonInInventory.size() > 1) {
+        System.out.println("Choose which Pokemon you would like to check the level of.");
+        printPokemonInInventory();
+        String whichPokemonToLevel = scanner.nextLine();
+        Pokemon comparePokemonInInventory = findPokemonWithMatch(whichPokemonToLevel);
+        if (comparePokemonInInventory == null) {
+            System.out.println("You haven't caught that Pokemon yet!");
+        } else {
+            comparePokemonInInventory.displayLevel();
+        }
+    } else if (pokemonInInventory.isEmpty()) {
+        System.out.println("You haven't caught anything yet!");
+    } else {
+        Pokemon autoPokemonToLevel = pokemonInInventory.getFirst();
+        autoPokemonToLevel.displayLevel();
+    }
 }
 
 /**

@@ -11,6 +11,10 @@ public class Pokemon {
     private boolean poopFactor;
     private int movesKnown;
     private int initialLevel;
+    private int startingExperiencePoints;
+    private int addExperienceByPetting = 50;
+    private int currentExperience;
+    private int getExpLevel;
     private PokemonType pokemonType;
     private ArrayList<String> startingMoves = new ArrayList<>();
 
@@ -21,12 +25,14 @@ public class Pokemon {
         healthPoints = StatCreators.setStartingHealth(name);
         poopFactor = StatCreators.setDoesItPoop();
         initialLevel = StatCreators.setStartingLevel();
+        startingExperiencePoints = initialLevel * 100;
+        currentExperience = startingExperiencePoints;
         movesKnown = StatCreators.setNumberOfStartingMoves();
         pokemonType = StatCreators.declareType(name);
         startingMoves = StatCreators.setTheStartingMoves(movesKnown, pokemonType);
     }
     public void petPokemon() {
-//        System.out.println(name + " " + name + "!");
+        currentExperience = currentExperience + addExperienceByPetting;
         if (name.contains("Mew")) {
             System.out.println("Mewww!!!");
         } else if (name.contains("Squirtle")) {
@@ -39,6 +45,8 @@ public class Pokemon {
         if (isShiny) {
             System.out.println("I am shiny, bitch!");
         }
+        System.out.println("Your " + name + " gained " + addExperienceByPetting);
+        System.out.println("Total experience is at " + currentExperience);
     }
     public void renamePokemon(String newName) {
          name = newName;
@@ -65,6 +73,19 @@ public class Pokemon {
         System.out.println("Your pokemon knows: " + startingMoves + "!");
         if (poopFactor) {
             System.out.println("Your " + name + " needs to poop!");
+        }
+    }
+
+    public void displayLevel() {
+        String convertExp = "";
+        if (currentExperience > 999) {
+            convertExp = Integer.toString(Math.abs(currentExperience));
+            getExpLevel = Integer.parseInt(convertExp.substring(0, 2));
+            System.out.println("Your " + name + " is at level " + getExpLevel);
+        } else {
+            convertExp = Integer.toString(Math.abs(currentExperience));
+            getExpLevel = Character.getNumericValue(convertExp.charAt(0));
+            System.out.println("Your " + name + " is at level " + getExpLevel);
         }
     }
 
