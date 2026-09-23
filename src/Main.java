@@ -100,15 +100,13 @@ private void showLevel() {
         if (comparePokemonInInventory == null) {
             System.out.println("You haven't caught that Pokemon yet!");
         } else {
-           comparePokemonInInventory.displayLevel();
-//            comparePokemonInInventory.calculateExperienceLevel();
+            comparePokemonInInventory.displayLevel();
         }
     } else if (pokemonInInventory.isEmpty()) {
         System.out.println("You haven't caught anything yet!");
     } else {
         Pokemon autoPokemonToLevel = pokemonInInventory.getFirst();
-      autoPokemonToLevel.displayLevel();
-//      autoPokemonToLevel.calculateExperienceLevel();
+        autoPokemonToLevel.displayLevel();
     }
 }
 

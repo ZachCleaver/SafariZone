@@ -10,8 +10,7 @@ public class Pokemon {
     private int healthPoints;
     private boolean poopFactor;
     private int movesKnown;
-    private int initialLevel;
-    private int startingExperiencePoints;
+    private int pokeLevel;
     private int addExperienceByPetting = 50;
     private int currentExperience;
     private PokemonType pokemonType;
@@ -23,9 +22,7 @@ public class Pokemon {
         shinyColoring = "";
         healthPoints = StatCreators.setStartingHealth(name);
         poopFactor = StatCreators.setDoesItPoop();
-        initialLevel = StatCreators.setStartingLevel();
-        startingExperiencePoints = initialLevel * 100;
-        currentExperience = startingExperiencePoints;
+        pokeLevel = StatCreators.setStartingLevel();
         movesKnown = StatCreators.setNumberOfStartingMoves();
         pokemonType = StatCreators.declareType(name);
         startingMoves = StatCreators.setTheStartingMoves(movesKnown, pokemonType);
@@ -45,8 +42,7 @@ public class Pokemon {
         if (isShiny) {
             System.out.println("I am shiny, bitch!");
         }
-        System.out.println("Your " + name + " gained " + addExperienceByPetting);
-        System.out.println("Total experience is at " + currentExperience);
+        checkForLevelUp();
     }
     public void renamePokemon(String newName) {
          name = newName;
@@ -68,7 +64,7 @@ public class Pokemon {
 
     public void printStartingStats() {
         System.out.println("You caught a " + pokemonType + " Pokemon!");
-        System.out.println("Your " + name + " has the starting level of " + initialLevel + " and has the starting health points of: " + healthPoints);
+        System.out.println("Your " + name + " has the starting level of " + pokeLevel + " and has the starting health points of: " + healthPoints);
         System.out.println("Your " + name + " has " + movesKnown + " moves!");
         System.out.println("Your pokemon knows: " + startingMoves + "!");
         if (poopFactor) {
@@ -77,14 +73,11 @@ public class Pokemon {
     }
 
     private void checkForLevelUp() {
-        int requiredXp = getTotalXpForLevel(initialLevel + 1) - getTotalXpForLevel(initialLevel);
-        System.out.println("You need " + requiredXp + " XP for the next level.");
-        System.out.println("You have " + currentExperience + " currently.");
-
+        int requiredXp = getTotalXpForLevel(pokeLevel + 1) - getTotalXpForLevel(pokeLevel);
         if (currentExperience >= requiredXp) {
-            System.out.println("Level up!");
             currentExperience -= requiredXp;
-            initialLevel++;
+            pokeLevel++;
+            System.out.println("Your " + name + " is now level " + pokeLevel + "!");
         } else {
             System.out.println("Keep training");
         }
@@ -108,7 +101,8 @@ public class Pokemon {
     }
 
     public void displayLevel() {
-        currentExperience /= 100;
-        System.out.println("Your " + " is at level " + currentExperience);
+        int requiredXp = getTotalXpForLevel(pokeLevel + 1) - getTotalXpForLevel(pokeLevel);
+        System.out.println("You need " + requiredXp + " XP for the next level.");
+        System.out.println("You have " + currentExperience + " currently.");
     }
 }
