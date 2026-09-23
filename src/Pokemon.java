@@ -14,9 +14,6 @@ public class Pokemon {
     private int startingExperiencePoints;
     private int addExperienceByPetting = 50;
     private int currentExperience;
-    private double levelIncreaseModifier;
-    private double expNeededToLevel;
-    private int pokeLevel;
     private PokemonType pokemonType;
     private ArrayList<String> startingMoves = new ArrayList<>();
 
@@ -33,6 +30,7 @@ public class Pokemon {
         pokemonType = StatCreators.declareType(name);
         startingMoves = StatCreators.setTheStartingMoves(movesKnown, pokemonType);
     }
+
     public void petPokemon() {
         currentExperience = currentExperience + addExperienceByPetting;
         if (name.contains("Mew")) {
@@ -78,27 +76,36 @@ public class Pokemon {
         }
     }
 
-    /**Attempted to create compounding experience needed to level.
-     * Supposed to take the starting experiences points and times it by 1.25 to create experience needed for next level
-     * Is supposed to continously evolve the experienced needed for each level by the same recipe.
-     * Does not fully work
-     */
-//    public void calculateExperienceLevel() {
-//        levelIncreaseModifier = (startingExperiencePoints * 1.25);
-//        System.out.println(levelIncreaseModifier);
-//        expNeededToLevel = (int)levelIncreaseModifier - currentExperience;
-//        System.out.println(expNeededToLevel);
-//        if (expNeededToLevel > 0) {
-//            System.out.println("You need " + expNeededToLevel + " more experience to level!");
-//        } else {
-//            pokeLevel = initialLevel++;
-//            int leftOverExp = currentExperience - (int)levelIncreaseModifier;
-//            expNeededToLevel = (currentExperience - leftOverExp) *1.25;
-//            levelIncreaseModifier = expNeededToLevel;
-//            System.out.println("Your " + name + " is now level " + pokeLevel + "!");
-//            System.out.println("Your " + name + " now needs " + expNeededToLevel + "!");
-//        }
-//        }
+    private void checkForLevelUp() {
+        int requiredXp = getTotalXpForLevel(initialLevel + 1) - getTotalXpForLevel(initialLevel);
+        System.out.println("You need " + requiredXp + " XP for the next level.");
+        System.out.println("You have " + currentExperience + " currently.");
+
+        if (currentExperience >= requiredXp) {
+            System.out.println("Level up!");
+            currentExperience -= requiredXp;
+            initialLevel++;
+        } else {
+            System.out.println("Keep training");
+        }
+    }
+
+    private int getXpRequiredForLevel(int level) {
+        if (level <= 1) {
+            return 0;
+        }
+
+        return (int) (100 * Math.pow(1.25, level - 2));
+    }
+
+    private int getTotalXpForLevel(int targetLevel) {
+        int total = 0;
+        for (int i = 2; i <= targetLevel; i++) {
+            total += getXpRequiredForLevel(i);
+        }
+
+        return total;
+    }
 
     public void displayLevel() {
         currentExperience /= 100;
