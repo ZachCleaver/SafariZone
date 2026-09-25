@@ -27,10 +27,6 @@ private ArrayList<Pokemon> pokemonInInventory = new ArrayList<>();
 
 void main() {
     showWelcomeMessage();
-//    Pokemon mew = new Pokemon("Mew");
-//    mew.petPokemon();
-//    mew.renamePokemon("Pick-a-chew");
-//    mew.petPokemon();
     String userAction = "";
 
     // Main loop to allow user to input actions in the console
@@ -114,7 +110,6 @@ private void showLevel() {
  * Catches a random Pokemon and adds it to the user's inventory.
  */
 private void catchPokemon() {
-    // Generates a random number between the first int and up to (but not including) the last int
     Random rand = new Random();
     String pokemonName = "";
     int randomNumber = rand.nextInt(1, 101);
@@ -252,17 +247,6 @@ private void renamePokemon() {
         autoPokemonToName.renamePokemon(autoNamePokemon);
         System.out.println(getNameOfPokemonAuto + " is now " + autoNamePokemon + "!");
     }
-//    if (pokemonInInventory.contains(orginalPokemon)) {
-//        indexOfPokemon = pokemonInInventory.indexOf(orginalPokemon);
-//        System.out.println("Enter new name.");
-//        String namePokemon = scanner.nextLine();
-//        pokemonInInventory.set(indexOfPokemon, namePokemon);
-//        pokemonInInventory.add(namePokemon);
-//        System.out.println("Your pokemon " + orginalPokemon + " is now named " + namePokemon + "!");
-//        pokemonInInventory.remove(orginalPokemon);
-//    } else {
-//        System.out.println("That is not a valid Pokemon you have caught, try again.");
-//    }
 }
 
 private Pokemon findPokemonWithMatch(String nameToCheck) {
@@ -288,10 +272,4 @@ private void endGame() {
     System.out.println("You caught: " + pokemonInInventory.size() + " pokemon!");
     System.out.println("Look at you go!");
     System.exit(0);
-}
-/**
- * Feed a random Pokemon and output if it was yummy or not!
- */
-private void feedPokemon() {
-    // TODO: Implement me
 }
